@@ -130,10 +130,11 @@ if 'messages' not in st.session_state:
 for message in st.session_state.messages:
     st.chat_message(message['role']).markdown(message['content'])
 
-user_input = st.chat_input("Pass Your Prompt Here")
-user_input = ("My Menstrual Blood Color is: " + get_blood_color(uploaded_file)) if uploaded_file else None
+user_input1 = st.chat_input("Pass Your Prompt Here")
+user_input2 = ("My Menstrual Blood Color is: " + get_blood_color(uploaded_file)) if uploaded_file else None
 
-if user_input:
+if user_input1 or user_input2:
+    user_input = user_input1 if user_input1 else user_input2
     st.chat_message('user').markdown(user_input)
     st.session_state.messages.append({'role':'user', 'content': user_input})
     
